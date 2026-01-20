@@ -31,22 +31,33 @@ export default function OverlayMenu({ isOpen, onClose }) {
 
           <ul className="space-y-6 text-center w-full z-1050">
             {/* Main Links */}
-            {["Home", "About Us", "Booking"].map((item, index) => (
-              <motion.li
-                key={item}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + index * 0.1 }}
+            <motion.li
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Link
+                to="/"
+                onClick={onClose}
+                className="text-2xl text-white font-bold hover:text-neonGreen transition-colors duration-300 neon-text"
               >
-                <a
-                  href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
-                  onClick={onClose}
-                  className="text-2xl text-white font-bold hover:text-neonGreen transition-colors duration-300 neon-text"
-                >
-                  {item}
-                </a>
-              </motion.li>
-            ))}
+                Home
+              </Link>
+            </motion.li>
+
+            <motion.li
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Link
+                to="/about"
+                onClick={onClose}
+                className="text-2xl text-white font-bold hover:text-neonGreen transition-colors duration-300 neon-text"
+              >
+                About Us
+              </Link>
+            </motion.li>
 
             {/* Services Dropdown */}
             <motion.li
@@ -72,25 +83,45 @@ export default function OverlayMenu({ isOpen, onClose }) {
                       absolute left-1/2 -translate-x-1/2 mt-13
                       bg-brandBlack border border-brandNavy
                       rounded-lg px-6 py-4 space-y-4
-                      min-w-55 hadow-neonGreen z-1200
+                      min-w-55 shadow-neonGreen z-1200
                     "
                   >
-                    {[
-                      "Mobile Tyre Fitting",
-                      "Car Tyres Replacement",
-                      "Wheel Balancing",
-                      "Puncture Repairs",
-                    ].map((service) => (
-                      <li key={service}>
-                        <a
-                          href={`#${service.toLowerCase().replace(/\s+/g, "")}`}
-                          onClick={onClose}
-                          className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
-                        >
-                          {service}
-                        </a>
-                      </li>
-                    ))}
+                    <li>
+                      <Link
+                        to="/services/mobile-tyre-fitting"
+                        onClick={onClose}
+                        className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
+                      >
+                        Mobile Tyre Fitting
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/services/car-tyre-replacement"
+                        onClick={onClose}
+                        className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
+                      >
+                        Car Tyres Replacement
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/services/wheel-balancing"
+                        onClick={onClose}
+                        className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
+                      >
+                        Wheel Balancing
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/services/puncture-repair"
+                        onClick={onClose}
+                        className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
+                      >
+                        Puncture Repairs
+                      </Link>
+                    </li>
                   </motion.ul>
                 )}
               </AnimatePresence>
@@ -102,13 +133,13 @@ export default function OverlayMenu({ isOpen, onClose }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={onClose}
                 className="text-2xl text-white font-bold hover:text-neonGreen transition-colors duration-300 neon-text"
               >
                 Contact
-              </a>
+              </Link>
             </motion.li>
           </ul>
         </motion.div>

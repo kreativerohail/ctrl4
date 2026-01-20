@@ -76,13 +76,14 @@ export default function Home() {
             <a
               href="#contact"
               className="px-8 py-4 rounded-xl bg-[#00ff99] text-white font-semibold
-                         shadow-[0_0_25px_#00ff99] hover:scale-105 transition"
+             shadow-[0_0_10px_#00ff99] hover:scale-105 transition"
             >
-              Book Tyre Service
+              Contact Us
             </a>
 
+
             <a
-              href="tel:+447000000000"
+              href="tel:0161-6522335"
               className="px-8 py-4 rounded-xl border border-[#00ffff] text-white
                          hover:bg-[#00ffff]/10 transition flex items-center gap-2"
             >
@@ -106,7 +107,7 @@ export default function Home() {
             },
             {
               icon: <FaBolt />,
-              title: "Emergency Repair",
+              title: "Emergency Puncture Repair",
               desc: "Fast response for punctures and breakdown tyre emergencies."
             },
             {

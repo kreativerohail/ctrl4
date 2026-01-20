@@ -2,7 +2,7 @@ import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function WhatsAppButton({
-  phone = "447521440329",
+  phone = "447459745929",
   message = "Hello! I saw your portfolio and would like to connect.",
 }) {
   const encoded = encodeURIComponent(message);
