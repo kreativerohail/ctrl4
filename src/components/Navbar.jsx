@@ -61,14 +61,10 @@ export default function Navbar() {
       >
         <div className="relative max-w-7xl mx-auto h-20 flex items-center justify-between px-4 sm:px-6">
 
-          {/* LOGO – MOBILE LEFT FIX */}
+          {/* LOGO – MOBILE LEFT */}
           <Link
             to="/"
-            className="
-              absolute left-[0px] top-1/2 -translate-y-1/2
-              lg:static lg:translate-y-0
-              flex items-center
-            "
+            className="absolute left-[0px] top-1/2 -translate-y-1/2 lg:static lg:translate-y-0 flex items-center"
           >
             <img
               src={Logo}
@@ -77,8 +73,11 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* DESKTOP LINKS */}
-          <div className="hidden lg:flex items-center gap-10 text-slate-200 text-sm relative">
+          {/* DESKTOP LINKS – CENTERED */}
+          <div
+            className="hidden lg:flex items-center gap-10 text-slate-200 text-sm
+            absolute left-1/2 -translate-x-1/2"
+          >
             {["Home", "About"].map((item) => (
               <Link
                 key={item}
@@ -134,7 +133,6 @@ export default function Navbar() {
               Contact Us
             </Link>
 
-            {/* HAMBURGER */}
             <button
               onClick={() => setMenuOpen(true)}
               className="text-cyan-400 text-3xl lg:hidden hover:scale-110 transition"
