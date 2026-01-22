@@ -1,14 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
+import ParticlesBackground from "../components/ParticlesBackground.jsx"
 import { motion } from "framer-motion";
-import { FaCarSide, FaTools, FaBolt, FaPhoneAlt } from "react-icons/fa";
 
 export default function Home() {
+
   const roles = useMemo(
     () => [
-      "MOBILE TYRE FITTING",
-      "CAR TYRES REPLACEMENT",
-      "WHEEL BALANCING",
-      "PUNCTURE REPAIRS",
+      "STRATEGIC CONSULTING",
+      "OPERATIONAL EXCELLENCE",
+      "CYBERSECURITY LEADERSHIP",
+      "DIGITAL TRANSFORMATION",
     ],
     []
   );
@@ -17,13 +18,12 @@ export default function Home() {
   const [subIndex, setSubIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
 
-  /* ---------- TYPING EFFECT ---------- */
   useEffect(() => {
     const current = roles[index];
     const timer = setTimeout(() => {
       if (!deleting && subIndex < current.length) setSubIndex(v => v + 1);
       else if (!deleting && subIndex === current.length)
-        setTimeout(() => setDeleting(true), 1000);
+        setTimeout(() => setDeleting(true), 1300);
       else if (deleting && subIndex > 0) setSubIndex(v => v - 1);
       else {
         setDeleting(false);
@@ -35,123 +35,136 @@ export default function Home() {
   }, [subIndex, deleting, index, roles]);
 
   return (
-    <section className="relative min-h-screen bg-[#0b0c1c] overflow-hidden px-6 sm:px-16 pt-28">
+    <section
+      id="home"
+      className="relative min-h-screen bg-[#020617]
+                 px-6 sm:px-16 pt-36 overflow-hidden"
+    >
+      <ParticlesBackground/>
+      {/* AMBIENT BACKGROUND */}
+      <div className="absolute -top-40 -left-40 w-[520px] h-[520px]
+                      bg-cyan-500/10 blur-[280px]" />
+      <div className="absolute bottom-0 right-0 w-[520px] h-[520px]
+                      bg-emerald-500/5 blur-[280px]" />
 
-      {/* GRADIENT SHAPES */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#001f3f] opacity-40 blur-[160px]" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#00ffff] opacity-30 blur-[160px]" />
+      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[80px_1fr] gap-14">
 
-      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        {/* ========== LEFT VERTICAL BRAND RAIL ========== */}
+        <motion.div
+          className="hidden lg:flex flex-col items-center gap-6 pt-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <div className="w-px h-32 bg-cyan-500/40" />
+          <span className="text-cyan-400 text-[10px] tracking-[0.4em]
+                           rotate-180 [writing-mode:vertical-rl]">
+            CTRL4 ADVISORY
+          </span>
+          <div className="w-px h-32 bg-white/10" />
+        </motion.div>
 
-        {/* LEFT CONTENT */}
+        {/* ========== MAIN CONTENT ========== */}
         <div>
-          <motion.p
-            className="text-[#00ff99] tracking-widest text-sm mb-3"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            {roles[index].substring(0, subIndex)}
-            <span className="ml-1">|</span>
-          </motion.p>
 
-          <motion.h1
-            className="text-white text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
+          {/* ROLE STRIP */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
           >
-            UK Mobile Tyres
+            <span className="text-cyan-400 text-xs tracking-[0.35em] uppercase">
+              {roles[index].substring(0, subIndex)}
+            </span>
+            <span className="ml-1 text-cyan-400 animate-pulse">|</span>
+          </motion.div>
+
+          {/* HEADLINE */}
+          <motion.h1
+            className="text-white font-extrabold
+                       text-4xl sm:text-5xl lg:text-6xl
+                       leading-[1.1] max-w-4xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            Where Leadership
             <br />
-            <span className="text-[#00ffff]">
-              Mobile Tyre Experts
+            <span className="text-cyan-400">
+              Meets Clarity
             </span>
           </motion.h1>
 
-          <p className="text-white/80 mt-5 max-w-xl">
-            Fast, professional and fully mobile tyre services across the UK.
-            We come to your home, office or roadside — saving you time.
-          </p>
+          {/* PHILOSOPHY LINE (UNIQUE TOUCH) */}
+          <motion.p
+            className="mt-6 text-cyan-400/80 text-sm tracking-wide"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.15 }}
+          >
+            Less noise. Better decisions. Stronger outcomes.
+          </motion.p>
 
-          {/* CTA BUTTONS */}
-          <div className="flex flex-wrap gap-5 mt-8">
+          {/* DESCRIPTION */}
+          <motion.p
+            className="mt-10 text-slate-300 text-lg
+                       leading-relaxed max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+          >
+            CTRL4 advises senior leadership teams on navigating
+            complexity across operations, security, and digital
+            change — enabling confident decisions backed by
+            structure, insight, and experience.
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div
+            className="mt-14 flex flex-wrap gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+          >
             <a
               href="#contact"
-              className="px-8 py-4 rounded-xl bg-[#00ff99] text-white font-semibold
-             shadow-[0_0_10px_#00ff99] hover:scale-105 transition"
+              className="px-10 py-4 rounded-xl
+                         bg-cyan-500 text-[#020617]
+                         font-semibold tracking-wide
+                         shadow-[0_0_28px_rgba(34,211,238,0.35)]
+                         hover:-translate-y-0.5 transition"
             >
-              Contact Us
+              Speak with an Advisor
             </a>
-
 
             <a
-              href="tel:0161-6522335"
-              className="px-8 py-4 rounded-xl border border-[#00ffff] text-white
-                         hover:bg-[#00ffff]/10 transition flex items-center gap-2"
+              href="#services"
+              className="px-10 py-4 rounded-xl
+                         border border-white/20
+                         text-white font-medium
+                         hover:border-cyan-400
+                         hover:text-cyan-400 transition"
             >
-              <FaPhoneAlt /> Call Now
+              View Capabilities
             </a>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* RIGHT SERVICE CARDS */}
-        <div className="grid sm:grid-cols-2 gap-6">
-          {[
-            {
-              icon: <FaCarSide />,
-              title: "Mobile Fitting",
-              desc: "We fit tyres at your home, office or roadside with zero hassle."
-            },
-            {
-              icon: <FaTools />,
-              title: "Tyre Replacement",
-              desc: "Wide range of quality tyres installed by trained professionals."
-            },
-            {
-              icon: <FaBolt />,
-              title: "Emergency Puncture Repair",
-              desc: "Fast response for punctures and breakdown tyre emergencies."
-            },
-            {
-              icon: <FaCarSide />,
-              title: "Wheel Balancing",
-              desc: "Smooth, vibration-free driving with precision wheel balancing."
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              className="bg-white/5 backdrop-blur-xl border border-[#00ffff]/30
-                         rounded-2xl p-6 text-white hover:scale-105 transition"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <div className="text-3xl text-[#00ff99] mb-4">
-                {item.icon}
-              </div>
-              <h3 className="font-semibold text-lg">{item.title}</h3>
-              <p className="text-sm opacity-70 mt-2">
-                {item.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+          {/* TRUST STRIP */}
+<div className="mt-20 mb-10 grid grid-cols-2 sm:grid-cols-4 gap-10
+                border border-white/10 rounded-xl p-6 text-center">
+  {[
+    ["10+ Years", "Leadership Experience"],
+    ["UK & Global", "Client Engagements"],
+    ["Board-Level", "Strategic Advisory"],
+    ["Security-Led", "Delivery Approach"],
+  ].map(([title, subtitle], i) => (
+    <div key={i}>
+      <h3 className="text-cyan-400 font-semibold">{title}</h3>
+      <p className="text-slate-400 text-sm mt-1">{subtitle}</p>
+    </div>
+  ))}
+</div>
 
-      {/* STATS STRIP */}
-      <div className="relative z-10 mb-5 max-w-6xl mx-auto mt-20
-                      bg-[#001f3f]/60 backdrop-blur-xl
-                      border border-[#00ffff]/30 rounded-2xl
-                      grid grid-cols-2 sm:grid-cols-4 text-center p-6 text-white">
-        {[
-          ["1.2K+", "Tyres Fitted"],
-          ["500+", "Happy Clients"],
-          ["99%", "Satisfaction"],
-          ["10+", "Years Experience"],
-        ].map(([num, text], i) => (
-          <div key={i}>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#00ff99]">{num}</h2>
-            <p className="text-sm opacity-70">{text}</p>
-          </div>
-        ))}
+
+        </div>
       </div>
     </section>
   );

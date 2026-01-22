@@ -7,30 +7,33 @@ export default function OverlayMenu({ isOpen, onClose }) {
   const [showServices, setShowServices] = useState(false);
 
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
-  const origin = isMobile ? "95% 8%" : "50% 8%";
+  const origin = isMobile ? "90% 6%" : "50% 6%";
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-1000 flex flex-col items-center justify-start pt-24 bg-brandBlack"
+          className="fixed inset-0 z-1000 flex flex-col items-center justify-start pt-28
+                     bg-[#020617]"
           initial={{ clipPath: `circle(0% at ${origin})` }}
           animate={{ clipPath: `circle(150% at ${origin})` }}
           exit={{ clipPath: `circle(0% at ${origin})` }}
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-          style={{ background: "rgba(0,0,0,0.95)" }}
         >
           {/* CLOSE BUTTON */}
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 text-neonGreen hover:text-neonBlue text-3xl focus:outline-none transition-colors duration-300 z-1100"
+            className="absolute top-6 right-6 text-cyan-400 hover:text-cyan-300
+                       text-3xl transition z-1100"
             aria-label="Close Menu"
           >
             <FiX />
           </button>
 
-          <ul className="space-y-6 text-center w-full z-1050">
-            {/* Main Links */}
+          {/* MENU LINKS */}
+          <ul className="space-y-8 text-center w-full z-1050">
+
+            {/* HOME */}
             <motion.li
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -39,12 +42,14 @@ export default function OverlayMenu({ isOpen, onClose }) {
               <Link
                 to="/"
                 onClick={onClose}
-                className="text-2xl text-white font-bold hover:text-neonGreen transition-colors duration-300 neon-text"
+                className="text-2xl font-semibold text-white
+                           hover:text-cyan-400 transition"
               >
                 Home
               </Link>
             </motion.li>
 
+            {/* ABOUT */}
             <motion.li
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -53,22 +58,24 @@ export default function OverlayMenu({ isOpen, onClose }) {
               <Link
                 to="/about"
                 onClick={onClose}
-                className="text-2xl text-white font-bold hover:text-neonGreen transition-colors duration-300 neon-text"
+                className="text-2xl font-semibold text-white
+                           hover:text-cyan-400 transition"
               >
-                About Us
+                About CTRL4
               </Link>
             </motion.li>
 
-            {/* Services Dropdown */}
+            {/* SERVICES */}
             <motion.li
-              className="relative z-1050"
+              className="relative"
               onMouseEnter={() => setShowServices(true)}
               onMouseLeave={() => setShowServices(false)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.45 }}
             >
-              <span className="text-2xl text-white font-bold cursor-pointer hover:text-neonGreen transition-colors duration-300 neon-text">
+              <span className="text-2xl font-semibold text-white cursor-pointer
+                               hover:text-cyan-400 transition">
                 Services
               </span>
 
@@ -78,65 +85,48 @@ export default function OverlayMenu({ isOpen, onClose }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.3 }}
-                    className="
-                      absolute left-1/2 -translate-x-1/2 mt-13
-                      bg-brandBlack border border-brandNavy
-                      rounded-lg px-6 py-4 space-y-4
-                      min-w-55 shadow-neonGreen z-1200
-                    "
+                    transition={{ duration: 0.25 }}
+                    className="absolute left-1/2 -translate-x-1/2 mt-6
+                               bg-[#020617]/95 backdrop-blur-xl
+                               border border-cyan-500/30
+                               rounded-2xl px-8 py-6 space-y-4
+                               min-w-65
+                               shadow-[0_0_30px_rgba(34,211,238,0.2)]
+                               z-1200"
                   >
-                    <li>
-                      <Link
-                        to="/services/mobile-tyre-fitting"
-                        onClick={onClose}
-                        className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
-                      >
-                        Mobile Tyre Fitting
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/car-tyre-replacement"
-                        onClick={onClose}
-                        className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
-                      >
-                        Car Tyres Replacement
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/wheel-balancing"
-                        onClick={onClose}
-                        className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
-                      >
-                        Wheel Balancing
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/puncture-repair"
-                        onClick={onClose}
-                        className="text-white hover:text-neonGreen font-medium transition-colors duration-300 neon-text whitespace-nowrap block text-center"
-                      >
-                        Puncture Repairs
-                      </Link>
-                    </li>
+                    {[
+                      { label: "Solution Consulting", path: "#solutions" },
+                      { label: "BPO Advisory", path: "#bpo" },
+                      { label: "Cybersecurity Awareness", path: "#cyber" },
+                      { label: "SME Growth Enablement", path: "#growth" },
+                    ].map((item, i) => (
+                      <li key={i}>
+                        <a
+                          href={item.path}
+                          onClick={onClose}
+                          className="block text-center text-slate-200
+                                     hover:text-cyan-400 transition font-medium"
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
                   </motion.ul>
                 )}
               </AnimatePresence>
             </motion.li>
 
-            {/* Contact */}
+            {/* CONTACT */}
             <motion.li
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.7 }}
             >
               <Link
                 to="/contact"
                 onClick={onClose}
-                className="text-2xl text-white font-bold hover:text-neonGreen transition-colors duration-300 neon-text"
+                className="text-2xl font-semibold text-white
+                           hover:text-cyan-400 transition"
               >
                 Contact
               </Link>
