@@ -132,7 +132,7 @@ export default function WhyChooseUs() {
         <div className="flex justify-center gap-6 mt-8">
           <Link to="/contact">
             <button className="px-8 py-4 rounded-full bg-[#6ad1ff] text-black font-semibold hover:scale-105 transition">
-              Contact CTRL4
+              Contact Us
             </button>
           </Link>
 
