@@ -59,14 +59,21 @@ export default function Navbar() {
         ${visible ? "translate-y-0" : "-translate-y-full"}
         bg-[#020617]/80 backdrop-blur-xl border-b border-cyan-500/20`}
       >
-        <div className="max-w-7xl mx-auto h-20 flex items-center justify-between px-6">
+        <div className="relative max-w-7xl mx-auto h-20 flex items-center justify-between px-4 sm:px-6">
 
-          {/* LOGO */}
-          <Link to="/" className="flex mr-80px sm:mr-0px items-center gap-2">
+          {/* LOGO – MOBILE LEFT FIX */}
+          <Link
+            to="/"
+            className="
+              absolute left-[0px] top-1/2 -translate-y-1/2
+              lg:static lg:translate-y-0
+              flex items-center
+            "
+          >
             <img
               src={Logo}
               alt="CTRL4 Logo"
-              className="h-40 w-auto object-contain"
+              className="h-28 lg:h-40 w-auto object-contain"
             />
           </Link>
 
@@ -116,7 +123,7 @@ export default function Navbar() {
           </div>
 
           {/* RIGHT ACTIONS */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ml-auto">
             <Link
               to="/contact"
               className="hidden sm:inline-flex px-6 py-2 rounded-xl
