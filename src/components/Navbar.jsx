@@ -62,7 +62,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto h-20 flex items-center justify-between px-6">
 
           {/* LOGO */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex mr-20px sm:mr-0px items-center gap-2">
             <img
               src={Logo}
               alt="CTRL4 Logo"
