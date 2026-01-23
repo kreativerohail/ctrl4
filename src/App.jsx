@@ -10,7 +10,7 @@ import BPOAdvisory from "./pages/BPOAdvisory.jsx";
 import CybersecurityAwareness from "./pages/CybersecurityAwareness.jsx";
 import SmeGrowthEnablement from "./pages/SmeGrowthEnablement.jsx";
 import About from "./pages/About.jsx";
-import Contact from "./pages/contact.jsx";
+import Contact from "./pages/Contact.jsx";
 
 export default function App() {
   return (
