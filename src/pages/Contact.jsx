@@ -195,7 +195,7 @@ export default function Contact() {
                          text-sm font-semibold tracking-wide
                          shadow-[0_0_30px_rgba(34,211,238,0.35)]"
             >
-              Request Discussion
+              Request for Discussion
             </motion.button>
           </div>
         </motion.form>
@@ -203,3 +203,4 @@ export default function Contact() {
     </section>
   );
 }
+
