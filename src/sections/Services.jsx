@@ -34,7 +34,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="relative bg-[#050518] px-6 sm:px-16 pt-32 pb-32 overflow-hidden">
+    <section id="services" className="relative bg-[#050518] px-6 sm:px-16 pt-32 pb-32 overflow-hidden">
       
       {/* Ambient background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-225 h-225 bg-[#0099ff]/10 blur-[140px] rounded-full" />
