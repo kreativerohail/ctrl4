@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FaLock, FaClock, FaUserTie } from "react-icons/fa";
 
-export default function ContactSection() {
+export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -211,3 +211,4 @@ export default function ContactSection() {
     </section>
   );
 }
+
