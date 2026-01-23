@@ -1,16 +1,23 @@
 import { motion } from "framer-motion";
 import { FaLock, FaClock, FaUserTie } from "react-icons/fa";
 
-export default function Contact() {
+export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
 
+    const API_URL = "https://ctrl-backend-three.vercel.app"; // ✅ Vercel backend
+
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(formData)),
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          company: formData.get("company"),
+          message: formData.get("message"),
+        }),
       });
 
       if (res.ok) {
@@ -19,7 +26,8 @@ export default function Contact() {
       } else {
         alert("Something went wrong");
       }
-    } catch {
+    } catch (err) {
+      console.error(err);
       alert("Network error");
     }
   };
@@ -29,7 +37,7 @@ export default function Contact() {
       id="contact"
       className="relative bg-[#020617] py-20 px-6 sm:px-16 overflow-hidden"
     >
-      {/* GRID */}
+      {/* GRID BACKGROUND */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -41,7 +49,7 @@ export default function Contact() {
         }}
       />
 
-      {/* AMBIENT */}
+      {/* AMBIENT GLOWS */}
       <div className="absolute -top-32 right-[-10%] w-[520px] h-[520px] bg-cyan-500/10 blur-[260px]" />
       <div className="absolute bottom-[-30%] left-[-10%] w-[520px] h-[520px] bg-emerald-500/5 blur-[260px]" />
 
@@ -75,7 +83,7 @@ export default function Contact() {
 
       {/* ================= MAIN CONTENT ================= */}
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
-        {/* LEFT */}
+        {/* LEFT CONTENT */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -195,7 +203,7 @@ export default function Contact() {
                          text-sm font-semibold tracking-wide
                          shadow-[0_0_30px_rgba(34,211,238,0.35)]"
             >
-              Request for Discussion
+              Request Discussion
             </motion.button>
           </div>
         </motion.form>
@@ -203,4 +211,3 @@ export default function Contact() {
     </section>
   );
 }
-
