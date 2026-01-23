@@ -13,10 +13,10 @@ export default function Navbar() {
   const lastScrollY = useRef(0);
 
   const services = [
-    { name: "Solution Consulting", path: "#solutions" },
-    { name: "BPO Advisory", path: "#bpo" },
-    { name: "Cybersecurity Awareness", path: "#cyber" },
-    { name: "SME Growth Enablement", path: "#growth" },
+    { name: "Solution Consulting", path: "/solution-consulting" },
+    { name: "BPO Advisory", path: "/bpo-advisory" },
+    { name: "Cybersecurity Awareness", path: "/cybersecurity-awareness" },
+    { name: "SME Growth Enablement", path: "/smegrowth-enablement" },
   ];
 
   useEffect(() => {
@@ -107,14 +107,14 @@ export default function Navbar() {
                 rounded-2xl shadow-[0_0_30px_rgba(34,211,238,0.15)]
                 overflow-hidden">
                   {services.map((service, i) => (
-                    <a
+                    <Link
                       key={i}
-                      href={service.path}
+                      to={service.path}
                       className="block px-6 py-4 text-slate-200
-                      hover:bg-cyan-500/10 hover:text-cyan-300 transition"
+                        hover:bg-cyan-500/10 hover:text-cyan-300 transition"
                     >
                       {service.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}
