@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import CustomCursor from "./components/CustomCursor.jsx";
 import WhatsAppButton from "./components/WhatsAppButton.jsx";
 import Main from "./pages/Main.jsx";
+import PremiumFooter from "./components/PremiumFooter.jsx";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Main />} />
         </Routes>
+        <PremiumFooter/>
       </div>
     </Router>
   );
