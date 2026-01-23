@@ -9,6 +9,13 @@ export default function OverlayMenu({ isOpen, onClose }) {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
   const origin = isMobile ? "90% 6%" : "50% 6%";
 
+  const services = [
+    { label: "Solution Consulting", path: "/solution-consulting" },
+    { label: "BPO Advisory", path: "/bpo-advisory" },
+    { label: "Cybersecurity Awareness", path: "/cybersecurity-awareness" },
+    { label: "SME Growth Enablement", path: "/smegrowth-enablement" },
+  ];
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -94,21 +101,16 @@ export default function OverlayMenu({ isOpen, onClose }) {
                                shadow-[0_0_30px_rgba(34,211,238,0.2)]
                                z-1200"
                   >
-                    {[
-                      { label: "Solution Consulting", path: "#solutions" },
-                      { label: "BPO Advisory", path: "#bpo" },
-                      { label: "Cybersecurity Awareness", path: "#cyber" },
-                      { label: "SME Growth Enablement", path: "#growth" },
-                    ].map((item, i) => (
+                    {services.map((item, i) => (
                       <li key={i}>
-                        <a
-                          href={item.path}
+                        <Link
+                          to={item.path}
                           onClick={onClose}
                           className="block text-center text-slate-200
                                      hover:text-cyan-400 transition font-medium"
                         >
                           {item.label}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </motion.ul>
