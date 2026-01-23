@@ -124,7 +124,7 @@ export default function Navbar() {
           {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-4 ml-auto">
             <Link
-              to="/contact-us"
+              to="/contact"
               className="hidden sm:inline-flex px-6 py-2 rounded-xl
               bg-cyan-500 text-[#020617] font-semibold
               shadow-[0_0_20px_rgba(34,211,238,0.4)]
