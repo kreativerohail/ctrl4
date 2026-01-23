@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { FaLock, FaClock, FaUserTie } from "react-icons/fa";
+import { useEffect } from "react";
 
 export default function Contact() {
+                useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -211,4 +215,5 @@ export default function Contact() {
     </section>
   );
 }
+
 
