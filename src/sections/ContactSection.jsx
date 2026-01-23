@@ -35,7 +35,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative bg-[#020617] py-44 px-6 sm:px-16 overflow-hidden"
+      className="relative bg-[#020617] py-20 px-6 sm:px-16 overflow-hidden"
     >
       {/* GRID BACKGROUND */}
       <div
