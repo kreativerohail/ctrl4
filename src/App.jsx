@@ -32,6 +32,7 @@ export default function App() {
           <Route path="/smegrowth-enablement" element={<SmeGrowthEnablement/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/contact" element={<Contact/>} />
+          
         </Routes>
         <PremiumFooter/>
       </div>
