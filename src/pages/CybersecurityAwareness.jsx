@@ -34,7 +34,7 @@ export default function CybersecurityAwareness() {
     const formData = new FormData(e.target);
 
     try {
-      const res = await fetch("https://ctrl-backend-three.vercel.app", {
+      const res = await fetch("https://ctrl-backend-three.vercel.app/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Object.fromEntries(formData)),
@@ -172,4 +172,5 @@ export default function CybersecurityAwareness() {
     </section>
   );
 }
+
 
