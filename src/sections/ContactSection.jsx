@@ -6,21 +6,27 @@ export default function ContactSection() {
 
     const formData = new FormData(e.target);
 
-    // Backend URL from environment variable
-    const API_URL = "http://localhost:5000";
+    // Backend URL (Vercel deployment)
+    const API_URL = "https://ctrl-backend-three.vercel.app"; // ✅ change this to your deployed backend
 
     try {
       const res = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(formData)),
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          company: formData.get("company"),
+          message: formData.get("message"),
+        }),
       });
+
+      const data = await res.json();
 
       if (res.ok) {
         alert("Message sent successfully!");
         e.target.reset();
       } else {
-        const data = await res.json();
         alert(`Error: ${data.message || "Something went wrong"}`);
       }
     } catch (err) {
