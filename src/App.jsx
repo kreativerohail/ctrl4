@@ -31,7 +31,7 @@ export default function App() {
           <Route path="/cybersecurity-awareness" element={<CybersecurityAwareness/>} />
           <Route path="/smegrowth-enablement" element={<SmeGrowthEnablement/>} />
           <Route path="/about" element={<About/>} />
-          <Route path="/contact" element={<Contact/>} />
+          <Route path="/contact-us" element={<Contact/>} />
           
         </Routes>
         <PremiumFooter/>
