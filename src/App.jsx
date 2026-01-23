@@ -10,6 +10,7 @@ import BPOAdvisory from "./pages/BPOAdvisory.jsx";
 import CybersecurityAwareness from "./pages/CybersecurityAwareness.jsx";
 import SmeGrowthEnablement from "./pages/SmeGrowthEnablement.jsx";
 import About from "./pages/About.jsx";
+import Contact from "./pages/contact.jsx";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/cybersecurity-awareness" element={<CybersecurityAwareness/>} />
           <Route path="/smegrowth-enablement" element={<SmeGrowthEnablement/>} />
           <Route path="/about" element={<About/>} />
+          <Route path="/contact" element={<Contact/>} />
         </Routes>
         <PremiumFooter/>
       </div>
