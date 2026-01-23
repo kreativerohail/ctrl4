@@ -5,6 +5,10 @@ import CustomCursor from "./components/CustomCursor.jsx";
 import WhatsAppButton from "./components/WhatsAppButton.jsx";
 import Main from "./pages/Main.jsx";
 import PremiumFooter from "./components/PremiumFooter.jsx";
+import SolutionConsulting from "./pages/SolutionConsulting.jsx";
+import BPOAdvisory from "./pages/BPOAdvisory.jsx";
+import CybersecurityAwareness from "./pages/CybersecurityAwareness.jsx";
+import SmeGrowthEnablement from "./pages/SmeGrowthEnablement.jsx";
 
 export default function App() {
   return (
@@ -20,6 +24,10 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/solution-consulting" element={<SolutionConsulting/>} />
+          <Route path="/bpo-advisory" element={<BPOAdvisory/>} />
+          <Route path="/cybersecurity-awareness" element={<CybersecurityAwareness/>} />
+          <Route path="/smegrowth-enablement" element={<SmeGrowthEnablement/>} />
         </Routes>
         <PremiumFooter/>
       </div>
