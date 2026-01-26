@@ -18,7 +18,7 @@ export default function App() {
       <div className="relative text-white min-h-screen">
         <CustomCursor />
         <WhatsAppButton
-          phone="447459745929"
+          phone="447876390332"
           message="Hello! I saw your website and would like to connect with You."
         />
 
