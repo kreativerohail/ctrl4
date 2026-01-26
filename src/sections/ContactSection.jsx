@@ -6,7 +6,7 @@ export default function ContactSection() {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    const API_URL = "https://ctrl-backend-three.vercel.app"; // ✅ Vercel backend
+    const API_URL = "https://ctrl-backend-three.vercel.app";
 
     try {
       const res = await fetch(`${API_URL}/api/contact`, {
@@ -49,43 +49,47 @@ export default function ContactSection() {
         }}
       />
 
-      {/* AMBIENT GLOWS */}
+      {/* AMBIENT */}
       <div className="absolute -top-32 right-[-10%] w-[520px] h-[520px] bg-cyan-500/10 blur-[260px]" />
       <div className="absolute bottom-[-30%] left-[-10%] w-[520px] h-[520px] bg-emerald-500/5 blur-[260px]" />
 
-      {/* ================= TOP CENTER HEADING ================= */}
+      {/* HEADING */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
-        className="relative z-10 max-w-3xl mx-auto text-center mb-28"
+        transition={{ duration: 0.9 }}
+        className="relative z-10 max-w-3xl mx-auto text-center mb-24"
       >
         <p className="uppercase tracking-[0.45em] text-xs text-cyan-400 mb-5">
           Contact
         </p>
 
-        <h2 className="text-white text-4xl sm:text-5xl font-extrabold leading-tight">
+        <h2 className="text-white text-4xl sm:text-5xl font-extrabold">
           Let’s discuss
           <span className="block text-cyan-400 mt-2">
             leadership-level decisions
           </span>
         </h2>
 
-        {/* Animated divider */}
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: "120px" }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
           className="h-px bg-cyan-400/60 mx-auto mt-10"
         />
       </motion.div>
 
-      {/* ================= MAIN CONTENT ================= */}
-      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
-        {/* LEFT CONTENT */}
+      {/* MAIN */}
+      <div
+        className="relative z-10 max-w-7xl mx-auto
+                   grid grid-cols-1 lg:grid-cols-2
+                   gap-16 lg:gap-20
+                   items-center"
+      >
+        {/* LEFT */}
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
+          initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
@@ -94,7 +98,7 @@ export default function ContactSection() {
             Senior advisory engagement
           </h3>
 
-          <p className="mt-6 text-slate-300 text-lg leading-relaxed max-w-xl">
+          <p className="mt-6 text-slate-300 text-lg max-w-xl">
             This is not a sales enquiry. We work directly with executives and
             boards who require clarity, discretion, and decisive execution.
           </p>
@@ -124,7 +128,9 @@ export default function ContactSection() {
                 transition={{ delay: i * 0.15 }}
                 className="flex gap-4"
               >
-                <div className="text-cyan-400 mt-1">{item.icon}</div>
+                <div className="text-cyan-400 mt-1 text-lg">
+                  {item.icon}
+                </div>
                 <div>
                   <h4 className="text-white font-medium">{item.title}</h4>
                   <p className="text-slate-400 text-sm">{item.desc}</p>
@@ -134,16 +140,18 @@ export default function ContactSection() {
           </div>
         </motion.div>
 
-        {/* RIGHT FORM */}
+        {/* FORM – CENTER ON MOBILE */}
         <motion.form
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
           className="bg-white/[0.035] backdrop-blur-2xl
                      border border-white/10
-                     rounded-3xl p-10 sm:p-14"
+                     rounded-3xl
+                     p-10 sm:p-14
+                     w-full max-w-xl mx-auto"
         >
           <div className="grid sm:grid-cols-2 gap-10">
             {[
@@ -189,8 +197,8 @@ export default function ContactSection() {
           </div>
 
           {/* CTA */}
-          <div className="mt-16 flex items-center justify-between gap-6">
-            <p className="text-white/45 text-sm max-w-xs">
+          <div className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <p className="text-white/45 text-sm text-center sm:text-left">
               Selective engagements only.
             </p>
 
@@ -198,7 +206,8 @@ export default function ContactSection() {
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.96 }}
               type="submit"
-              className="px-8 py-3 rounded-lg
+              className="w-full sm:w-auto
+                         px-8 py-3 rounded-lg
                          bg-cyan-500 text-[#020617]
                          text-sm font-semibold tracking-wide
                          shadow-[0_0_30px_rgba(34,211,238,0.35)]"
