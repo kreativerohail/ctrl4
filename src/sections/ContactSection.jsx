@@ -4,31 +4,39 @@ import { FaLock, FaClock, FaUserTie } from "react-icons/fa";
 export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
 
-    const API_URL = "https://ctrl-backend-three.vercel.app";
+    const form = e.target;
+
+    const payload = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      company: form.company.value.trim(),
+      message: form.message.value.trim(),
+    };
 
     try {
-      const res = await fetch(`${API_URL}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          company: formData.get("company"),
-          message: formData.get("message"),
-        }),
-      });
+      const res = await fetch(
+        "https://ctrl-backend-three.vercel.app/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
-      if (res.ok) {
-        alert("Message sent successfully!");
-        e.target.reset();
-      } else {
-        alert("Something went wrong");
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Server error");
       }
-    } catch (err) {
-      console.error(err);
-      alert("Network error");
+
+      alert("Message sent successfully!");
+      form.reset();
+    } catch (error) {
+      console.error("Contact error:", error);
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -81,12 +89,7 @@ export default function ContactSection() {
       </motion.div>
 
       {/* MAIN */}
-      <div
-        className="relative z-10 max-w-7xl mx-auto
-                   grid grid-cols-1 lg:grid-cols-2
-                   gap-16 lg:gap-20
-                   items-center"
-      >
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
         {/* LEFT */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -140,38 +143,38 @@ export default function ContactSection() {
           </div>
         </motion.div>
 
-        {/* FORM – CENTER ON MOBILE */}
+        {/* FORM */}
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="bg-white/[0.035] backdrop-blur-2xl
-                     border border-white/10
-                     rounded-3xl
-                     p-10 sm:p-14
-                     w-full max-w-xl mx-auto"
+          className="bg-white/[0.035] backdrop-blur-2xl border border-white/10 rounded-3xl p-10 sm:p-14 w-full max-w-xl mx-auto"
         >
           <div className="grid sm:grid-cols-2 gap-10">
-            {[
-              { label: "Full Name", name: "name", required: true },
-              { label: "Email", name: "email", type: "email", required: true },
-            ].map((field, i) => (
-              <div key={i}>
-                <label className="text-[11px] uppercase tracking-[0.3em] text-white/60">
-                  {field.label}
-                </label>
-                <input
-                  {...field}
-                  className="w-full mt-3 bg-transparent
-                             border-b border-white/25
-                             py-2.5 text-white
-                             focus:outline-none
-                             focus:border-cyan-400 transition"
-                />
-              </div>
-            ))}
+            <div>
+              <label className="text-[11px] uppercase tracking-[0.3em] text-white/60">
+                Full Name
+              </label>
+              <input
+                name="name"
+                required
+                className="w-full mt-3 bg-transparent border-b border-white/25 py-2.5 text-white focus:outline-none focus:border-cyan-400 transition"
+              />
+            </div>
+
+            <div>
+              <label className="text-[11px] uppercase tracking-[0.3em] text-white/60">
+                Email
+              </label>
+              <input
+                name="email"
+                type="email"
+                required
+                className="w-full mt-3 bg-transparent border-b border-white/25 py-2.5 text-white focus:outline-none focus:border-cyan-400 transition"
+              />
+            </div>
 
             <div className="sm:col-span-2">
               <label className="text-[11px] uppercase tracking-[0.3em] text-white/60">
@@ -196,7 +199,6 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* CTA */}
           <div className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6">
             <p className="text-white/45 text-sm text-center sm:text-left">
               Selective engagements only.
@@ -206,11 +208,7 @@ export default function ContactSection() {
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.96 }}
               type="submit"
-              className="w-full sm:w-auto
-                         px-8 py-3 rounded-lg
-                         bg-cyan-500 text-[#020617]
-                         text-sm font-semibold tracking-wide
-                         shadow-[0_0_30px_rgba(34,211,238,0.35)]"
+              className="w-full sm:w-auto px-8 py-3 rounded-lg bg-cyan-500 text-[#020617] text-sm font-semibold tracking-wide shadow-[0_0_30px_rgba(34,211,238,0.35)]"
             >
               Request Discussion
             </motion.button>
