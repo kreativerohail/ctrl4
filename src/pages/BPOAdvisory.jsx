@@ -1,11 +1,20 @@
-import { motion } from "framer-motion";
-import { useEffect } from "react";
-import { FaCheckCircle, FaUsers, FaProjectDiagram, FaHeadset, FaChartLine } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import {
+  FaCheckCircle,
+  FaUsers,
+  FaProjectDiagram,
+  FaHeadset,
+  FaChartLine,
+} from "react-icons/fa";
 
 export default function BPOAdvisory() {
-          useEffect(() => {
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
   const highlights = [
     {
       icon: <FaProjectDiagram />,
@@ -34,14 +43,17 @@ export default function BPOAdvisory() {
     const formData = new FormData(e.target);
 
     try {
-      const res = await fetch("https://ctrl-backend-three.vercel.app/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(formData)),
-      });
+      const res = await fetch(
+        "https://ctrl-backend-three.vercel.app/api/contact",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(formData)),
+        }
+      );
 
       if (res.ok) {
-        alert("Message sent successfully!");
+        setSuccess(true); // trigger modal
         e.target.reset();
       } else {
         alert("Something went wrong");
@@ -53,7 +65,7 @@ export default function BPOAdvisory() {
 
   return (
     <section className="relative bg-[#050518] px-6 sm:px-16 pt-32 pb-32 overflow-hidden">
-      {/* Ambient Background Blobs */}
+      {/* Background Blobs */}
       <motion.div
         animate={{ x: [-40, 40, -40], y: [-20, 20, -20], rotate: [0, 15, 0] }}
         transition={{ duration: 22, repeat: Infinity, repeatType: "mirror" }}
@@ -80,7 +92,8 @@ export default function BPOAdvisory() {
           <span className="text-[#6ad1ff]">scale your BPO teams</span>
         </h1>
         <p className="text-white/70 mt-6 leading-relaxed max-w-2xl mx-auto">
-          Our BPO Advisory services guide organisations to improve efficiency, enhance performance, and scale operations with operator-led expertise.
+          Our BPO Advisory services guide organisations to improve efficiency,
+          enhance performance, and scale operations with operator-led expertise.
         </p>
       </motion.div>
 
@@ -105,7 +118,7 @@ export default function BPOAdvisory() {
 
       {/* FEATURES + FORM */}
       <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
-        {/* LEFT – Key Features */}
+        {/* LEFT – Features */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -142,35 +155,102 @@ export default function BPOAdvisory() {
           transition={{ duration: 1 }}
           className="bg-white/[0.035] backdrop-blur-2xl border border-white/10 rounded-3xl p-10 sm:p-14 shadow-lg"
         >
-          <h3 className="text-white text-2xl font-semibold mb-10 text-center">Request a BPO Consultation</h3>
+          <h3 className="text-white text-2xl font-semibold mb-10 text-center">
+            Request a BPO Consultation
+          </h3>
+
           <div className="grid sm:grid-cols-2 gap-8">
-            {[{ label: "Full Name", name: "name", required: true },
-              { label: "Email", name: "email", type: "email", required: true }].map((field, i) => (
-              <div key={i} className="relative group">
-                <input {...field} placeholder=" " className="w-full bg-transparent border-b border-white/25 py-3 text-white placeholder-transparent focus:outline-none focus:border-cyan-400 transition" />
-                <label className="absolute left-0 top-3 text-white/50 text-[11px] uppercase tracking-[0.3em] transition-all group-focus:-top-3 group-focus:text-cyan-400 group-focus:text-[10px] pointer-events-none">{field.label}</label>
+            {/* Floating Inputs */}
+            {[
+              { label: "Full Name", name: "name", required: true },
+              { label: "Email", name: "email", type: "email", required: true },
+            ].map((field, i) => (
+              <div key={i} className="relative w-full">
+                <input
+                  {...field}
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b border-white/25 py-3 text-white placeholder-transparent focus:outline-none focus:border-cyan-400 transition"
+                />
+                <label className="absolute left-0 top-3 text-white/50 text-[11px] uppercase tracking-[0.3em] transition-all
+                  peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/50 peer-placeholder-shown:text-[11px]
+                  peer-focus:-top-2 peer-focus:text-cyan-400 peer-focus:text-[10px] pointer-events-none">
+                  {field.label}
+                </label>
               </div>
             ))}
 
-            <div className="sm:col-span-2 relative group">
-              <input name="company" placeholder=" " className="w-full bg-transparent border-b border-white/25 py-3 text-white placeholder-transparent focus:outline-none focus:border-cyan-400 transition" />
-              <label className="absolute left-0 top-3 text-white/50 text-[11px] uppercase tracking-[0.3em] transition-all group-focus:-top-3 group-focus:text-cyan-400 group-focus:text-[10px] pointer-events-none">Company</label>
+            {/* Company */}
+            <div className="sm:col-span-2 relative w-full">
+              <input
+                name="company"
+                placeholder=" "
+                className="peer w-full bg-transparent border-b border-white/25 py-3 text-white placeholder-transparent focus:outline-none focus:border-cyan-400 transition"
+              />
+              <label className="absolute left-0 top-3 text-white/50 text-[11px] uppercase tracking-[0.3em] transition-all
+                peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/50 peer-placeholder-shown:text-[11px]
+                peer-focus:-top-2 peer-focus:text-cyan-400 peer-focus:text-[10px] pointer-events-none">
+                Company
+              </label>
             </div>
 
-            <div className="sm:col-span-2 relative group">
-              <textarea name="message" rows="4" placeholder=" " required className="w-full bg-transparent border-b border-white/25 py-3 text-white placeholder-transparent focus:outline-none focus:border-cyan-400 transition resize-none"></textarea>
-              <label className="absolute left-0 top-3 text-white/50 text-[11px] uppercase tracking-[0.3em] transition-all group-focus:-top-3 group-focus:text-cyan-400 group-focus:text-[10px] pointer-events-none">Message</label>
+            {/* Message */}
+            <div className="sm:col-span-2 relative w-full">
+              <textarea
+                name="message"
+                rows="4"
+                required
+                placeholder=" "
+                className="peer w-full bg-transparent border-b border-white/25 py-3 text-white placeholder-transparent focus:outline-none focus:border-cyan-400 transition resize-none"
+              />
+              <label className="absolute left-0 top-3 text-white/50 text-[11px] uppercase tracking-[0.3em] transition-all
+                peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/50 peer-placeholder-shown:text-[11px]
+                peer-focus:-top-2 peer-focus:text-cyan-400 peer-focus:text-[10px] pointer-events-none">
+                Message
+              </label>
             </div>
           </div>
 
-          <motion.button whileHover={{ y: -2 }} whileTap={{ scale: 0.96 }} type="submit" className="mt-12 w-full py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-[#020617] font-semibold rounded-lg shadow-[0_0_30px_rgba(34,211,238,0.35)] transition-all hover:scale-105">
+          <motion.button
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.96 }}
+            type="submit"
+            className="mt-12 w-full py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-[#020617] font-semibold rounded-lg shadow-[0_0_30px_rgba(34,211,238,0.35)] transition-all hover:scale-105"
+          >
             Request Discussion
           </motion.button>
+
           <p className="text-white/45 text-sm mt-4 text-center">Selective engagements only.</p>
         </motion.form>
       </div>
+
+      {/* SUCCESS MODAL */}
+      <AnimatePresence>
+        {success && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          >
+            <motion.div className="bg-[#050518] text-white rounded-2xl p-10 sm:p-16 max-w-sm text-center shadow-lg">
+              <FaCheckCircle className="text-cyan-400 text-5xl mx-auto mb-4" />
+              <h3 className="text-2xl font-semibold mb-2">Success!</h3>
+              <p className="text-white/70 mb-6">
+                Your message has been sent successfully. We will get back to you soon.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSuccess(false)}
+                className="mt-2 w-full py-2 bg-cyan-400 text-[#020617] rounded-lg font-semibold transition"
+              >
+                Close
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
-
-
