@@ -124,20 +124,6 @@ export default function WhyCtrl4PremiumUKStyle() {
         <h3 className="text-white text-2xl sm:text-3xl font-semibold">
           Ready to scale with clarity and confidence?
         </h3>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
-  <Link to="/contact" className="w-full sm:w-auto">
-    <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-cyan-400 text-black font-semibold text-center hover:scale-105 transition">
-      Contact CTRL4
-    </button>
-  </Link>
-
-  <a
-    href="mailto:riz.aziz@ctrl4.co.uk"
-    className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 text-white text-center hover:bg-white/10 transition"
-  >
-    Email Us
-  </a>
-</div>
 
       </motion.div>
     </section>
