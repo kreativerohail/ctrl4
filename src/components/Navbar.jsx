@@ -69,7 +69,7 @@ export default function Navbar() {
             <img
               src={Logo}
               alt="CTRL4 Logo"
-              className="h-20 lg:h-20 w-auto object-contain"
+              className="h-15 lg:h-15 w-auto object-contain"
             />
           </Link>
 
