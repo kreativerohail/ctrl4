@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import OverlayMenu from "./OverlayMenu.jsx";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import Logo from "../assets/lgp.png";
+import Logo from "../assets/llg.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
