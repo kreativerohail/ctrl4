@@ -71,7 +71,7 @@ export default function Navbar() {
   <img
     src={Logo}
     alt="CTRL4 Logo"
-    className="h-10 lg:h-12 w-auto object-contain"
+    className="h-10 lg:h-18 w-auto object-contain"
   />
 
   {/* BRAND TEXT */}
