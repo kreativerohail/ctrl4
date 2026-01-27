@@ -62,16 +62,23 @@ export default function Navbar() {
         <div className="relative max-w-7xl mx-auto h-20 flex items-center justify-between px-4 sm:px-6">
 
           {/* LOGO – MOBILE LEFT */}
-          <Link
-            to="/"
-            className="absolute left-[0px] top-1/2 -translate-y-1/2 lg:static lg:translate-y-0 flex items-center"
-          >
-            <img
-              src={Logo}
-              alt="CTRL4 Logo"
-              className="h-15 lg:h-15 w-auto object-contain"
-            />
-          </Link>
+<Link
+  to="/"
+  className="absolute left-[0px] top-1/2 -translate-y-1/2
+             lg:static lg:translate-y-0
+             flex items-center gap-2"
+>
+  <img
+    src={Logo}
+    alt="CTRL4 Logo"
+    className="h-10 lg:h-12 w-auto object-contain"
+  />
+
+  {/* BRAND TEXT */}
+  <span className="text-slate-100 font-bold text-lg lg:text-xl tracking-wide">
+    CTRL4
+  </span>
+</Link>
 
           {/* DESKTOP LINKS – CENTERED */}
           <div
