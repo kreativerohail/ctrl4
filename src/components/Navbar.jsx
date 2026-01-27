@@ -75,9 +75,10 @@ export default function Navbar() {
   />
 
   {/* BRAND TEXT */}
-  <span className="text-slate-100 font-bold text-lg lg:text-xl tracking-wide">
-    CTRL4
-  </span>
+<span className="text-cyan-400 font-bold text-lg lg:text-xl tracking-wide
+                 drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]">
+  CTRL4
+</span>
 </Link>
 
           {/* DESKTOP LINKS – CENTERED */}
